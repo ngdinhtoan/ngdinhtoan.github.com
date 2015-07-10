@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Toán Nguyễn</title>
+    <link>https://ngdinhtoan.github.io/</link>
+    <description>Recent content on Toán Nguyễn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 Jul 2015 21:13:53 +0700</lastBuildDate>
+    <atom:link href="https://ngdinhtoan.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Hari - Generate GO struct from JSON</title>
+      <link>https://ngdinhtoan.github.io/hari/</link>
+      <pubDate>Wed, 08 Jul 2015 21:13:53 +0700</pubDate>
+      
+      <guid>https://ngdinhtoan.github.io/hari/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://travis-ci.org/ngdinhtoan/hari&#34;&gt;&lt;img src=&#34;https://travis-ci.org/ngdinhtoan/hari.svg&#34; alt=&#34;Build Status&#34; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;why-hari:6c7751fc6abdd6d962f5f519bc3a004e&#34;&gt;Why Hari?&lt;/h3&gt;
+
+&lt;p&gt;When you make a client for RESTful service in GO, usually you have to define some structures to parse JSON response.
+It&amp;rsquo;s boring and takes time. Hari will help you on that job.&lt;/p&gt;
+
+&lt;p&gt;But, please be aware that generated struct may not meet your requirement. You have to review it before using.&lt;/p&gt;
+
+&lt;h3 id=&#34;how-to-use:6c7751fc6abdd6d962f5f519bc3a004e&#34;&gt;How to use&lt;/h3&gt;
+
+&lt;p&gt;Install Hari by running the following command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/ngdinhtoan/hari
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Put JSON string into a file within &lt;code&gt;.json&lt;/code&gt; extension, the file name will be used to name struct.&lt;/p&gt;
+
+&lt;p&gt;Example file &lt;code&gt;product.json&lt;/code&gt; has content&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;A green door&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;quot;price&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mf&#34;&gt;12.50&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;quot;active&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;quot;tags&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;quot;home&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;green&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;quot;category&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;quot;id&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;quot;Home&amp;quot;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Run Hari command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hari --input-dir=[path/to/dir]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;then it will generate &lt;code&gt;product.go&lt;/code&gt; file in the same directory, and its content is&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Category&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;ID&lt;/span&gt;   &lt;span class=&#34;kt&#34;&gt;int64&lt;/span&gt;  &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;id&amp;quot;`&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;name&amp;quot;`&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Product&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Active&lt;/span&gt;   &lt;span class=&#34;kt&#34;&gt;bool&lt;/span&gt;     &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;active&amp;quot;`&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Category&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Category&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;category&amp;quot;`&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;ID&lt;/span&gt;       &lt;span class=&#34;kt&#34;&gt;int64&lt;/span&gt;    &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;id&amp;quot;`&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;     &lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;   &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;name&amp;quot;`&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Price&lt;/span&gt;    &lt;span class=&#34;kt&#34;&gt;float64&lt;/span&gt;  &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;price&amp;quot;`&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;Tags&lt;/span&gt;     &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;`json:&amp;quot;tags&amp;quot;`&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;license:6c7751fc6abdd6d962f5f519bc3a004e&#34;&gt;License&lt;/h3&gt;
+
+&lt;p&gt;Hari is licensed under the &lt;a href=&#34;https://github.com/ngdinhtoan/hari/blob/master/LICENSE&#34;&gt;MIT License&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SlackCmd - A simple server to receive and handle Slack Commands written in GO</title>
+      <link>https://ngdinhtoan.github.io/slackcmd/</link>
+      <pubDate>Thu, 02 Jul 2015 21:34:43 +0700</pubDate>
+      
+      <guid>https://ngdinhtoan.github.io/slackcmd/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://godoc.org/github.com/ngdinhtoan/slackcmd&#34;&gt;&lt;img src=&#34;https://godoc.org/github.com/ngdinhtoan/slackcmd?status.svg&#34; alt=&#34;GoDoc&#34; /&gt;
+&lt;/a&gt;
+&lt;a href=&#34;https://travis-ci.org/ngdinhtoan/slackcmd&#34;&gt;&lt;img src=&#34;https://travis-ci.org/ngdinhtoan/slackcmd.svg&#34; alt=&#34;Build Status&#34; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;install-and-import-slackcmd:15fcaf67a4522856c623f3449d59f851&#34;&gt;Install and import SlackCmd&lt;/h3&gt;
+
+&lt;p&gt;Of course, you have to &lt;a href=&#34;https://golang.org/doc/install&#34;&gt;install GO&lt;/a&gt; first if you do not have GO on your system.&lt;/p&gt;
+
+&lt;p&gt;Get SlackCmd by running command&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/ngdinhtoan/slackcmd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and import slackcmd package into your project&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;github.com/ngdinhtoan/slackcmd&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;If you want to use stable version,
+don&amp;rsquo;t want the changes in master branch affect to your project,
+use SlackCmd &lt;code&gt;v1&lt;/code&gt; by&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;slackcmd&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;gopkg.in/ngdinhtoan/slackcmd.v1&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;how-to-use-slackcmd:15fcaf67a4522856c623f3449d59f851&#34;&gt;How to use SlackCmd&lt;/h3&gt;
+
+&lt;p&gt;Checkout package &lt;code&gt;github.com/ngdinhtoan/slackcmd/example&lt;/code&gt; to see how to use it&lt;/p&gt;
+
+&lt;h4 id=&#34;how-to-write-new-commander:15fcaf67a4522856c623f3449d59f851&#34;&gt;How to write new commander&lt;/h4&gt;
+
+&lt;p&gt;It is quite simple to write a new commander.&lt;/p&gt;
+
+&lt;p&gt;Below example will show you how to implement a commander to handle &lt;code&gt;/hello&lt;/code&gt; command&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;c1&#34;&gt;// $GOPATH/src/hello/hello.go&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;hello&lt;/span&gt;
+
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;io&amp;quot;&lt;/span&gt;
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;net/http&amp;quot;&lt;/span&gt;
+
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;github.com/ngdinhtoan/slackcmd&amp;quot;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;c1&#34;&gt;// auto register hellworld commander when import hello package&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;slackcmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Register&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;helloworld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{})&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;helloworld&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// ensure that you do not miss any function of Commander interface&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;slackcmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Commander&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;helloworld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// GetCommand return hello command&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;h&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;helloworld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;GetCommand&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;/hello&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// Validate payload always return nil&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;h&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;helloworld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Validate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;payload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;slackcmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// Execute will say hello to user, who enter /hello command&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;h&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;helloworld&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Execute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;payload&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;slackcmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;ResponseWriter&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;msg&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;Hello &amp;quot;&lt;/span&gt;
+
+	&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Text&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nx&#34;&gt;msg&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;payload&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Text&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+		&lt;span class=&#34;nx&#34;&gt;msg&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;World&amp;quot;&lt;/span&gt;
+	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+
+	&lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;WriteString&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;msg&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now use it in your app&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;span class=&#34;c1&#34;&gt;// $GOPATH/src/hello/app/main.go&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;
+
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;_&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// just import it, init function will register hello command&lt;/span&gt;
+
+	&lt;span class=&#34;s&#34;&gt;&amp;quot;github.com/ngdinhtoan/slackcmd&amp;quot;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+	&lt;span class=&#34;nx&#34;&gt;slackcmd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;StartServer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;9191&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;/&amp;quot;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Run app by &lt;code&gt;go run&lt;/code&gt; and your server will listen at address loalhost:9191.
+Send a test request:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -X POST -d token=gIkuvaNzQIHg97ATvDxqgjtO \
+             -d team_id=T0001 \
+             -d team_domain=example \
+             -d user_id=U2147483697 \
+             -d user_name=Steve \
+             -d channel_id=C2147483705 \
+             -d channel_name=test \
+             -d command=/hello \
+             -d text=SlackCmd \
+             -- http://localhost:9191
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;the output should be:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Hello SlackCmd
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;use-package-webhook-to-send-rich-message-to-slack:15fcaf67a4522856c623f3449d59f851&#34;&gt;Use package &lt;code&gt;webhook&lt;/code&gt; to send rich message to Slack&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;import &amp;quot;github.com/ngdinhtoan/slackcmd/webhook&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook&#34;&gt;&lt;img src=&#34;https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook?status.svg&#34; alt=&#34;GoDoc&#34; /&gt;
+&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Data that is sent to &lt;code&gt;http.ResponseWriter&lt;/code&gt; will only be visible to the user who issued the command.&lt;/p&gt;
+
+&lt;p&gt;If the command needs to post to a channel so that all members can see it,
+you need to use incomming webhook to send message to channel.&lt;/p&gt;
+
+&lt;p&gt;You can check package &lt;code&gt;github.com/ngdinhtoan/slackcmd/jira&lt;/code&gt; as an example.&lt;/p&gt;
+
+&lt;h3 id=&#34;contribution:15fcaf67a4522856c623f3449d59f851&#34;&gt;Contribution&lt;/h3&gt;
+
+&lt;p&gt;If you have a contribution, new commander or any idea to share, feel free to create a pull request or open a ticket,
+or join to chat &lt;a href=&#34;https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;license:15fcaf67a4522856c623f3449d59f851&#34;&gt;License&lt;/h3&gt;
+
+&lt;p&gt;SlackCmd is licensed under the &lt;a href=&#34;https://github.com/ngdinhtoan/slackcmd/blob/master/LICENSE&#34;&gt;MIT License&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
