@@ -7,7 +7,7 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-    <title> Hari - Generate GO struct from JSON &middot; Toán Nguyễn </title>
+    <title> Hari &middot; Toán Nguyễn </title>
     <meta name="description" content="A command to generate GO struct from JSON files">
     <meta name="keywords" content="[Golang, JSON, Struct, Convert]">
 
@@ -48,13 +48,14 @@
             <h1>Toán Nguyễn</h1>
 
             <p class="lead">
-                 A personal site 
+                 Developing with ♡ 
             </p>
         </div>
 
         <nav>
             <ul class="sidebar-nav">
                 <li><a href="/">Home</a></li>
+                <li><a href="https://github.com/ngdinhtoan">GitHub</a></li>
                 
             </ul>
         </nav>
@@ -66,22 +67,22 @@
     <div class="post">
         <article>
             <header>
-                <h1>Hari - Generate GO struct from JSON</h1>
+                <h1>Hari</h1>
+                <p>A command to generate GO struct from JSON files</p>
                 <span class="post-date">Wed, Jul 8, 2015</span>
             </header>
             
 
-<p><a href="https://travis-ci.org/ngdinhtoan/hari"><img src="https://travis-ci.org/ngdinhtoan/hari.svg" alt="Build Status" />
-</a></p>
+<p><a href="https://travis-ci.org/ngdinhtoan/hari"><img src="https://travis-ci.org/ngdinhtoan/hari.svg" alt="Build Status" /></a></p>
 
-<h3 id="why-hari:6c7751fc6abdd6d962f5f519bc3a004e">Why Hari?</h3>
+<h3 id="why-hari">Why Hari?</h3>
 
 <p>When you make a client for RESTful service in GO, usually you have to define some structures to parse JSON response.
 It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>But, please be aware that generated struct may not meet your requirement. You have to review it before using.</p>
 
-<h3 id="how-to-use:6c7751fc6abdd6d962f5f519bc3a004e">How to use</h3>
+<h3 id="how-to-use">How to use</h3>
 
 <p>Install Hari by running the following command</p>
 
@@ -92,7 +93,7 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>Example file <code>product.json</code> has content</p>
 
-<p><div class="highlight"><pre><span class="p">{</span>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;A green door&quot;</span><span class="p">,</span>
     <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mf">12.50</span><span class="p">,</span>
@@ -103,8 +104,8 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
         <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Home&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-</p>
+</code></pre></div>
+
 
 <p>Run Hari command</p>
 
@@ -113,7 +114,7 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>then it will generate <code>product.go</code> file in the same directory, and its content is</p>
 
-<p><div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+<p><div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kd">type</span> <span class="nx">Category</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">ID</span>   <span class="kt">int64</span>  <span class="s">`json:&quot;id&quot;`</span>
@@ -128,10 +129,10 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 	<span class="nx">Price</span>    <span class="kt">float64</span>  <span class="s">`json:&quot;price&quot;`</span>
 	<span class="nx">Tags</span>     <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&quot;tags&quot;`</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 </p>
 
-<h3 id="license:6c7751fc6abdd6d962f5f519bc3a004e">License</h3>
+<h3 id="license">License</h3>
 
 <p>Hari is licensed under the <a href="https://github.com/ngdinhtoan/hari/blob/master/LICENSE">MIT License</a>.</p>
 
@@ -139,7 +140,7 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
     </div>
 
     <footer>
-    <p class="copyright">&copy; 2015. All rights reserved.
+    <p class="copyright">&copy; 2016. All rights reserved.
          Powered by <a href="http://hugo.spf13.com/">Hugo</a>.
     </p>
 </footer>

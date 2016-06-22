@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
+	<meta name="generator" content="Hugo 0.16" />
     <link href="http://gmpg.org/xfn/11" rel="profile">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
@@ -40,13 +41,14 @@
             <h1>Toán Nguyễn</h1>
 
             <p class="lead">
-                 A personal site 
+                 Developing with ♡ 
             </p>
         </div>
 
         <nav>
             <ul class="sidebar-nav">
                 <li><a href="/">Home</a></li>
+                <li><a href="https://github.com/ngdinhtoan">GitHub</a></li>
                 
             </ul>
         </nav>
@@ -60,23 +62,91 @@
         <section class="post">
             <header>
                 <h1 class="post-title">
-                    <a href="https://ngdinhtoan.github.io/hari/">Hari - Generate GO struct from JSON</a>
+                    <a href="https://ngdinhtoan.github.io/flagstruct/">FlagStruct</a>
                 </h1>
+                <p>A simple way to register and parse flag into struct</p>
+                <span class="post-date">Wed, Jun 22, 2016</span>
+            </header>
+            
+
+<p><a href="https://travis-ci.org/ngdinhtoan/flagstruct"><img src="https://travis-ci.org/ngdinhtoan/flagstruct.svg" alt="Build Status" /></a>
+<a href="https://coveralls.io/github/ngdinhtoan/flagstruct"><img src="https://coveralls.io/repos/github/ngdinhtoan/flagstruct/badge.svg" alt="Coverage Status" /></a>
+<a href="https://godoc.org/github.com/ngdinhtoan/flagstruct"><img src="https://godoc.org/github.com/ngdinhtoan/flagstruct?status.svg" alt="GoDoc" /></a></p>
+
+<h2 id="install">Install</h2>
+
+<pre><code>go get -u github.com/ngdinhtoan/flagstruct
+</code></pre>
+
+<h2 id="tag-syntax">Tag syntax</h2>
+
+<pre><code>`flag:&quot;flagname&quot; default:&quot;default_value&quot; usage:&quot;description here&quot;`
+</code></pre>
+
+<p>Tag <code>default</code> and <code>usage</code> can be omit.</p>
+
+<h2 id="example">Example</h2>
+
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&quot;fmt&quot;</span>
+
+	<span class="s">&quot;github.com/ngdinhtoan/flagstruct&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">dbConfig</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Hostname</span> <span class="kt">string</span> <span class="s">`flag:&quot;hostname&quot; default:&quot;localhost&quot; usage:&quot;Hostname&quot;`</span>
+	<span class="nx">Port</span>     <span class="kt">uint64</span> <span class="s">`flag:&quot;port&quot; default:&quot;3306&quot;`</span>
+	<span class="nx">DbName</span>   <span class="kt">string</span> <span class="s">`flag:&quot;db_name&quot; usage:&quot;Database name&quot;`</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">conf</span> <span class="o">:=</span> <span class="nx">dbConfig</span><span class="p">{}</span>
+	<span class="nx">flagstruct</span><span class="p">.</span><span class="nx">Parse</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">conf</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hostname:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">Hostname</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Port:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">Port</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;DB Name:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">DbName</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>Run with some options:</p>
+
+<pre><code>go run main.go -hostname=127.0.0.1 -db_name=test_db
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>Hostname: 127.0.0.1
+Port: 3306
+DB Name: test_db
+</code></pre>
+
+            <hr/>
+        </section>
+        
+        <section class="post">
+            <header>
+                <h1 class="post-title">
+                    <a href="https://ngdinhtoan.github.io/hari/">Hari</a>
+                </h1>
+                <p>A command to generate GO struct from JSON files</p>
                 <span class="post-date">Wed, Jul 8, 2015</span>
             </header>
             
 
-<p><a href="https://travis-ci.org/ngdinhtoan/hari"><img src="https://travis-ci.org/ngdinhtoan/hari.svg" alt="Build Status" />
-</a></p>
+<p><a href="https://travis-ci.org/ngdinhtoan/hari"><img src="https://travis-ci.org/ngdinhtoan/hari.svg" alt="Build Status" /></a></p>
 
-<h3 id="why-hari:6c7751fc6abdd6d962f5f519bc3a004e">Why Hari?</h3>
+<h3 id="why-hari">Why Hari?</h3>
 
 <p>When you make a client for RESTful service in GO, usually you have to define some structures to parse JSON response.
 It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>But, please be aware that generated struct may not meet your requirement. You have to review it before using.</p>
 
-<h3 id="how-to-use:6c7751fc6abdd6d962f5f519bc3a004e">How to use</h3>
+<h3 id="how-to-use">How to use</h3>
 
 <p>Install Hari by running the following command</p>
 
@@ -87,7 +157,7 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>Example file <code>product.json</code> has content</p>
 
-<p><div class="highlight"><pre><span class="p">{</span>
+<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;A green door&quot;</span><span class="p">,</span>
     <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mf">12.50</span><span class="p">,</span>
@@ -98,8 +168,8 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
         <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Home&quot;</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
-</p>
+</code></pre></div>
+
 
 <p>Run Hari command</p>
 
@@ -108,7 +178,7 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>then it will generate <code>product.go</code> file in the same directory, and its content is</p>
 
-<p><div class="highlight"><pre><span class="kn">package</span> <span class="nx">main</span>
+<p><div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kd">type</span> <span class="nx">Category</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">ID</span>   <span class="kt">int64</span>  <span class="s">`json:&quot;id&quot;`</span>
@@ -123,10 +193,10 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 	<span class="nx">Price</span>    <span class="kt">float64</span>  <span class="s">`json:&quot;price&quot;`</span>
 	<span class="nx">Tags</span>     <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&quot;tags&quot;`</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 </p>
 
-<h3 id="license:6c7751fc6abdd6d962f5f519bc3a004e">License</h3>
+<h3 id="license">License</h3>
 
 <p>Hari is licensed under the <a href="https://github.com/ngdinhtoan/hari/blob/master/LICENSE">MIT License</a>.</p>
 
@@ -136,18 +206,17 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
         <section class="post">
             <header>
                 <h1 class="post-title">
-                    <a href="https://ngdinhtoan.github.io/slackcmd/">SlackCmd - A simple server to receive and handle Slack Commands written in GO</a>
+                    <a href="https://ngdinhtoan.github.io/slackcmd/">SlackCmd</a>
                 </h1>
+                <p>A simple server to receive and handle Slack Commands written in GO</p>
                 <span class="post-date">Thu, Jul 2, 2015</span>
             </header>
             
 
-<p><a href="https://godoc.org/github.com/ngdinhtoan/slackcmd"><img src="https://godoc.org/github.com/ngdinhtoan/slackcmd?status.svg" alt="GoDoc" />
-</a>
-<a href="https://travis-ci.org/ngdinhtoan/slackcmd"><img src="https://travis-ci.org/ngdinhtoan/slackcmd.svg" alt="Build Status" />
-</a></p>
+<p><a href="https://godoc.org/github.com/ngdinhtoan/slackcmd"><img src="https://godoc.org/github.com/ngdinhtoan/slackcmd?status.svg" alt="GoDoc" /></a>
+<a href="https://travis-ci.org/ngdinhtoan/slackcmd"><img src="https://travis-ci.org/ngdinhtoan/slackcmd.svg" alt="Build Status" /></a></p>
 
-<h3 id="install-and-import-slackcmd:15fcaf67a4522856c623f3449d59f851">Install and import SlackCmd</h3>
+<h3 id="install-and-import-slackcmd">Install and import SlackCmd</h3>
 
 <p>Of course, you have to <a href="https://golang.org/doc/install">install GO</a> first if you do not have GO on your system.</p>
 
@@ -158,29 +227,29 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>and import slackcmd package into your project</p>
 
-<p><div class="highlight"><pre><span class="kn">import</span> <span class="s">&quot;github.com/ngdinhtoan/slackcmd&quot;</span>
-</pre></div>
-</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&quot;github.com/ngdinhtoan/slackcmd&quot;</span>
+</code></pre></div>
+
 
 <p>If you want to use stable version,
 don&rsquo;t want the changes in master branch affect to your project,
 use SlackCmd <code>v1</code> by</p>
 
-<p><div class="highlight"><pre><span class="kn">import</span> <span class="nx">slackcmd</span> <span class="s">&quot;gopkg.in/ngdinhtoan/slackcmd.v1&quot;</span>
-</pre></div>
-</p>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="nx">slackcmd</span> <span class="s">&quot;gopkg.in/ngdinhtoan/slackcmd.v1&quot;</span>
+</code></pre></div>
 
-<h3 id="how-to-use-slackcmd:15fcaf67a4522856c623f3449d59f851">How to use SlackCmd</h3>
+
+<h3 id="how-to-use-slackcmd">How to use SlackCmd</h3>
 
 <p>Checkout package <code>github.com/ngdinhtoan/slackcmd/example</code> to see how to use it</p>
 
-<h4 id="how-to-write-new-commander:15fcaf67a4522856c623f3449d59f851">How to write new commander</h4>
+<h4 id="how-to-write-new-commander">How to write new commander</h4>
 
 <p>It is quite simple to write a new commander.</p>
 
 <p>Below example will show you how to implement a commander to handle <code>/hello</code> command</p>
 
-<p><div class="highlight"><pre><span class="c1">// $GOPATH/src/hello/hello.go</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// $GOPATH/src/hello/hello.go</span>
 <span class="kn">package</span> <span class="nx">hello</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -223,12 +292,12 @@ use SlackCmd <code>v1</code> by</p>
 	<span class="nx">io</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span>
 	<span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span>
-</pre></div>
-</p>
+</code></pre></div>
+
 
 <p>Now use it in your app</p>
 
-<p><div class="highlight"><pre><span class="c1">// $GOPATH/src/hello/app/main.go</span>
+<p><div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// $GOPATH/src/hello/app/main.go</span>
 <span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
@@ -240,7 +309,7 @@ use SlackCmd <code>v1</code> by</p>
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">slackcmd</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">(</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="s">&quot;9191&quot;</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 </p>
 
 <p>Run app by <code>go run</code> and your server will listen at address loalhost:9191.
@@ -263,13 +332,12 @@ Send a test request:</p>
 <pre><code>Hello SlackCmd
 </code></pre>
 
-<h4 id="use-package-webhook-to-send-rich-message-to-slack:15fcaf67a4522856c623f3449d59f851">Use package <code>webhook</code> to send rich message to Slack</h4>
+<h4 id="use-package-webhook-to-send-rich-message-to-slack">Use package <code>webhook</code> to send rich message to Slack</h4>
 
 <pre><code>import &quot;github.com/ngdinhtoan/slackcmd/webhook&quot;
 </code></pre>
 
-<p><a href="https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook"><img src="https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook?status.svg" alt="GoDoc" />
-</a></p>
+<p><a href="https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook"><img src="https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook?status.svg" alt="GoDoc" /></a></p>
 
 <p>Data that is sent to <code>http.ResponseWriter</code> will only be visible to the user who issued the command.</p>
 
@@ -278,12 +346,12 @@ you need to use incomming webhook to send message to channel.</p>
 
 <p>You can check package <code>github.com/ngdinhtoan/slackcmd/jira</code> as an example.</p>
 
-<h3 id="contribution:15fcaf67a4522856c623f3449d59f851">Contribution</h3>
+<h3 id="contribution">Contribution</h3>
 
 <p>If you have a contribution, new commander or any idea to share, feel free to create a pull request or open a ticket,
 or join to chat <a href="https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge">here</a>.</p>
 
-<h3 id="license:15fcaf67a4522856c623f3449d59f851">License</h3>
+<h3 id="license">License</h3>
 
 <p>SlackCmd is licensed under the <a href="https://github.com/ngdinhtoan/slackcmd/blob/master/LICENSE">MIT License</a>.</p>
 
@@ -293,7 +361,7 @@ or join to chat <a href="https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&
     </div>
 
     <footer>
-    <p class="copyright">&copy; 2015. All rights reserved.
+    <p class="copyright">&copy; 2016. All rights reserved.
          Powered by <a href="http://hugo.spf13.com/">Hugo</a>.
     </p>
 </footer>

@@ -7,9 +7,9 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-    <title> SlackCmd &middot; Toán Nguyễn </title>
-    <meta name="description" content="A simple server to receive and handle Slack Commands written in GO">
-    <meta name="keywords" content="[Golang, GO, Slack, Slack Command, Slack Bot]">
+    <title> FlagStruct &middot; Toán Nguyễn </title>
+    <meta name="description" content="A simple way to register and parse flag into struct">
+    <meta name="keywords" content="[golang, go, struct, flag]">
 
     
     <link rel="stylesheet" href="https://ngdinhtoan.github.io//css/style.css">
@@ -34,7 +34,7 @@
 
 <div class="github-fork-ribbon-wrapper right">
     <div class="github-fork-ribbon">
-        <a href="https://github.com/ngdinhtoan/slackcmd">Fork me on GitHub</a>
+        <a href="https://github.com/ngdinhtoan/flagstruct">Fork me on GitHub</a>
     </div>
 </div>
 
@@ -67,153 +67,66 @@
     <div class="post">
         <article>
             <header>
-                <h1>SlackCmd</h1>
-                <p>A simple server to receive and handle Slack Commands written in GO</p>
-                <span class="post-date">Thu, Jul 2, 2015</span>
+                <h1>FlagStruct</h1>
+                <p>A simple way to register and parse flag into struct</p>
+                <span class="post-date">Wed, Jun 22, 2016</span>
             </header>
             
 
-<p><a href="https://godoc.org/github.com/ngdinhtoan/slackcmd"><img src="https://godoc.org/github.com/ngdinhtoan/slackcmd?status.svg" alt="GoDoc" /></a>
-<a href="https://travis-ci.org/ngdinhtoan/slackcmd"><img src="https://travis-ci.org/ngdinhtoan/slackcmd.svg" alt="Build Status" /></a></p>
+<p><a href="https://travis-ci.org/ngdinhtoan/flagstruct"><img src="https://travis-ci.org/ngdinhtoan/flagstruct.svg" alt="Build Status" /></a>
+<a href="https://coveralls.io/github/ngdinhtoan/flagstruct"><img src="https://coveralls.io/repos/github/ngdinhtoan/flagstruct/badge.svg" alt="Coverage Status" /></a>
+<a href="https://godoc.org/github.com/ngdinhtoan/flagstruct"><img src="https://godoc.org/github.com/ngdinhtoan/flagstruct?status.svg" alt="GoDoc" /></a></p>
 
-<h3 id="install-and-import-slackcmd">Install and import SlackCmd</h3>
+<h2 id="install">Install</h2>
 
-<p>Of course, you have to <a href="https://golang.org/doc/install">install GO</a> first if you do not have GO on your system.</p>
-
-<p>Get SlackCmd by running command</p>
-
-<pre><code>go get github.com/ngdinhtoan/slackcmd
+<pre><code>go get -u github.com/ngdinhtoan/flagstruct
 </code></pre>
 
-<p>and import slackcmd package into your project</p>
+<h2 id="tag-syntax">Tag syntax</h2>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&quot;github.com/ngdinhtoan/slackcmd&quot;</span>
-</code></pre></div>
+<pre><code>`flag:&quot;flagname&quot; default:&quot;default_value&quot; usage:&quot;description here&quot;`
+</code></pre>
 
+<p>Tag <code>default</code> and <code>usage</code> can be omit.</p>
 
-<p>If you want to use stable version,
-don&rsquo;t want the changes in master branch affect to your project,
-use SlackCmd <code>v1</code> by</p>
+<h2 id="example">Example</h2>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="nx">slackcmd</span> <span class="s">&quot;gopkg.in/ngdinhtoan/slackcmd.v1&quot;</span>
-</code></pre></div>
-
-
-<h3 id="how-to-use-slackcmd">How to use SlackCmd</h3>
-
-<p>Checkout package <code>github.com/ngdinhtoan/slackcmd/example</code> to see how to use it</p>
-
-<h4 id="how-to-write-new-commander">How to write new commander</h4>
-
-<p>It is quite simple to write a new commander.</p>
-
-<p>Below example will show you how to implement a commander to handle <code>/hello</code> command</p>
-
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// $GOPATH/src/hello/hello.go</span>
-<span class="kn">package</span> <span class="nx">hello</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&quot;io&quot;</span>
-	<span class="s">&quot;net/http&quot;</span>
+	<span class="s">&quot;fmt&quot;</span>
 
-	<span class="s">&quot;github.com/ngdinhtoan/slackcmd&quot;</span>
+	<span class="s">&quot;github.com/ngdinhtoan/flagstruct&quot;</span>
 <span class="p">)</span>
 
-<span class="kd">func</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
-	<span class="c1">// auto register hellworld commander when import hello package</span>
-	<span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">helloworld</span><span class="p">{})</span>
+<span class="kd">type</span> <span class="nx">dbConfig</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Hostname</span> <span class="kt">string</span> <span class="s">`flag:&quot;hostname&quot; default:&quot;localhost&quot; usage:&quot;Hostname&quot;`</span>
+	<span class="nx">Port</span>     <span class="kt">uint64</span> <span class="s">`flag:&quot;port&quot; default:&quot;3306&quot;`</span>
+	<span class="nx">DbName</span>   <span class="kt">string</span> <span class="s">`flag:&quot;db_name&quot; usage:&quot;Database name&quot;`</span>
 <span class="p">}</span>
-
-<span class="kd">type</span> <span class="nx">helloworld</span> <span class="kd">struct</span><span class="p">{}</span>
-
-<span class="c1">// ensure that you do not miss any function of Commander interface</span>
-<span class="kd">var</span> <span class="nx">_</span> <span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Commander</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">helloworld</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)</span>
-
-<span class="c1">// GetCommand return hello command</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">helloworld</span><span class="p">)</span> <span class="nx">GetCommand</span><span class="p">()</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;/hello&quot;</span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Validate payload always return nil</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">helloworld</span><span class="p">)</span> <span class="nx">Validate</span><span class="p">(</span><span class="nx">payload</span> <span class="o">*</span><span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Payload</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
-
-<span class="c1">// Execute will say hello to user, who enter /hello command</span>
-<span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">helloworld</span><span class="p">)</span> <span class="nx">Execute</span><span class="p">(</span><span class="nx">payload</span> <span class="o">*</span><span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Payload</span><span class="p">,</span> <span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-	<span class="nx">msg</span> <span class="o">:=</span> <span class="s">&quot;Hello &quot;</span>
-
-	<span class="k">if</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">Text</span> <span class="o">!=</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
-		<span class="nx">msg</span> <span class="o">+=</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">Text</span>
-	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-		<span class="nx">msg</span> <span class="o">+=</span> <span class="s">&quot;World&quot;</span>
-	<span class="p">}</span>
-
-	<span class="nx">io</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span>
-	<span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span>
-</code></pre></div>
-
-
-<p>Now use it in your app</p>
-
-<p><div class="highlight"><pre><code class="language-go" data-lang="go"><span class="c1">// $GOPATH/src/hello/app/main.go</span>
-<span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="nx">_</span> <span class="s">&quot;hello&quot;</span> <span class="c1">// just import it, init function will register hello command</span>
-
-	<span class="s">&quot;github.com/ngdinhtoan/slackcmd&quot;</span>
-<span class="p">)</span>
 
 <span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">slackcmd</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">(</span><span class="s">&quot;localhost&quot;</span><span class="p">,</span> <span class="s">&quot;9191&quot;</span><span class="p">,</span> <span class="s">&quot;/&quot;</span><span class="p">)</span>
+	<span class="nx">conf</span> <span class="o">:=</span> <span class="nx">dbConfig</span><span class="p">{}</span>
+	<span class="nx">flagstruct</span><span class="p">.</span><span class="nx">Parse</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">conf</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hostname:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">Hostname</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Port:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">Port</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;DB Name:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">DbName</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
-</p>
 
-<p>Run app by <code>go run</code> and your server will listen at address loalhost:9191.
-Send a test request:</p>
 
-<pre><code>curl -X POST -d token=gIkuvaNzQIHg97ATvDxqgjtO \
-             -d team_id=T0001 \
-             -d team_domain=example \
-             -d user_id=U2147483697 \
-             -d user_name=Steve \
-             -d channel_id=C2147483705 \
-             -d channel_name=test \
-             -d command=/hello \
-             -d text=SlackCmd \
-             -- http://localhost:9191
+<p>Run with some options:</p>
+
+<pre><code>go run main.go -hostname=127.0.0.1 -db_name=test_db
 </code></pre>
 
-<p>the output should be:</p>
+<p>Output:</p>
 
-<pre><code>Hello SlackCmd
+<pre><code>Hostname: 127.0.0.1
+Port: 3306
+DB Name: test_db
 </code></pre>
-
-<h4 id="use-package-webhook-to-send-rich-message-to-slack">Use package <code>webhook</code> to send rich message to Slack</h4>
-
-<pre><code>import &quot;github.com/ngdinhtoan/slackcmd/webhook&quot;
-</code></pre>
-
-<p><a href="https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook"><img src="https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook?status.svg" alt="GoDoc" /></a></p>
-
-<p>Data that is sent to <code>http.ResponseWriter</code> will only be visible to the user who issued the command.</p>
-
-<p>If the command needs to post to a channel so that all members can see it,
-you need to use incomming webhook to send message to channel.</p>
-
-<p>You can check package <code>github.com/ngdinhtoan/slackcmd/jira</code> as an example.</p>
-
-<h3 id="contribution">Contribution</h3>
-
-<p>If you have a contribution, new commander or any idea to share, feel free to create a pull request or open a ticket,
-or join to chat <a href="https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge">here</a>.</p>
-
-<h3 id="license">License</h3>
-
-<p>SlackCmd is licensed under the <a href="https://github.com/ngdinhtoan/slackcmd/blob/master/LICENSE">MIT License</a>.</p>
 
         </article>
     </div>
