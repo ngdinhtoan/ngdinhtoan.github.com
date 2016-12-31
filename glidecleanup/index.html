@@ -7,10 +7,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <meta name="generator" content="Hugo 0.17" />
-    
-    
+    <meta name="description" content="Glide configuration cleaner">
+    <meta name="keywords" content="[glide, cleanup, golang, go]">
 
-    <title>Toán Nguyễn</title>
+    <title>Glide Cleanup &middot; Toán Nguyễn</title>
 
     
     <link rel="stylesheet" href="https://ngdinhtoan.github.io//css/normalize.css">
@@ -27,10 +27,18 @@
     
 
     
-    <link href="https://ngdinhtoan.github.io/index.xml" rel="alternate" type="application/rss+xml" title="Toán Nguyễn"/>
+    <link href="" rel="alternate" type="application/rss+xml" title="Toán Nguyễn"/>
 </head>
 
 <body>
+
+
+<div class="github-fork-ribbon-wrapper right">
+    <div class="github-fork-ribbon">
+        <a href="https://github.com/ngdinhtoan/glide-cleanup">Fork me on GitHub</a>
+    </div>
+</div>
+
 
 <div class="sidebar">
     <div class="container sidebar-sticky">
@@ -57,43 +65,36 @@
 
 
 <div class="content container">
-    <nav>
-        <ul class="posts">
+    <div class="post">
+        <article>
+            <header>
+                <h1>Glide Cleanup</h1>
+                <p>Glide configuration cleaner</p>
+                <span class="post-date">Sat, Dec 31, 2016</span>
+            </header>
             
-            <li>
-            <span>
-                <a href="https://ngdinhtoan.github.io/glidecleanup/">Glide Cleanup</a>
-                <time class="pull-right post-list">Sat, Dec 31, 2016</time>
-            </span>
-            <p>Glide configuration cleaner</p>
-            </li>
-            
-            <li>
-            <span>
-                <a href="https://ngdinhtoan.github.io/flagstruct/">FlagStruct</a>
-                <time class="pull-right post-list">Wed, Jun 22, 2016</time>
-            </span>
-            <p>A simple way to register and parse flag into struct</p>
-            </li>
-            
-            <li>
-            <span>
-                <a href="https://ngdinhtoan.github.io/hari/">Hari</a>
-                <time class="pull-right post-list">Wed, Jul 8, 2015</time>
-            </span>
-            <p>A command to generate GO struct from JSON files</p>
-            </li>
-            
-            <li>
-            <span>
-                <a href="https://ngdinhtoan.github.io/slackcmd/">SlackCmd</a>
-                <time class="pull-right post-list">Thu, Jul 2, 2015</time>
-            </span>
-            <p>A simple server to receive and handle Slack Commands written in GO</p>
-            </li>
-            
-        </ul>
-    </nav>
+
+<p><a href="https://travis-ci.org/ngdinhtoan/glide-cleanup"><img src="https://travis-ci.org/ngdinhtoan/glide-cleanup.svg?branch=master" alt="Build Status" /></a></p>
+
+<p>A <a href="https://www.glide.sh/">Glide</a>&rsquo;s plugin that removes unused packages from the <code>glide.yaml</code> file</p>
+
+<h2 id="install">Install</h2>
+
+<pre><code>go get github.com/ngdinhtoan/glide-cleanup
+</code></pre>
+
+<h2 id="run">Run</h2>
+
+<pre><code>glide cleanup
+</code></pre>
+
+<h2 id="license">License</h2>
+
+<p><a href="https://github.com/ngdinhtoan/glide-cleanup/blob/master/LICENSE">The MIT License</a></p>
+
+        </article>
+    </div>
+
     <footer>
     <p class="copyright">&copy; 2016. All rights reserved.
          Powered by <a href="http://hugo.spf13.com/">Hugo</a>.

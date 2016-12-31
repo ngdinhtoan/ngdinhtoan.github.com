@@ -2,12 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Toán Nguyễn</title>
-    <link>https://ngdinhtoan.github.io/</link>
+    <link>https://ngdinhtoan.github.io/index.xml</link>
     <description>Recent content on Toán Nguyễn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jun 2016 21:13:53 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 31 Dec 2016 10:26:53 +0700</lastBuildDate>
     <atom:link href="https://ngdinhtoan.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Glide Cleanup</title>
+      <link>https://ngdinhtoan.github.io/glidecleanup/</link>
+      <pubDate>Sat, 31 Dec 2016 10:26:53 +0700</pubDate>
+      
+      <guid>https://ngdinhtoan.github.io/glidecleanup/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://travis-ci.org/ngdinhtoan/glide-cleanup&#34;&gt;&lt;img src=&#34;https://travis-ci.org/ngdinhtoan/glide-cleanup.svg?branch=master&#34; alt=&#34;Build Status&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;A &lt;a href=&#34;https://www.glide.sh/&#34;&gt;Glide&lt;/a&gt;&amp;rsquo;s plugin that removes unused packages from the &lt;code&gt;glide.yaml&lt;/code&gt; file&lt;/p&gt;
+
+&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;go get github.com/ngdinhtoan/glide-cleanup
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;run&#34;&gt;Run&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;glide cleanup
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ngdinhtoan/glide-cleanup/blob/master/LICENSE&#34;&gt;The MIT License&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>FlagStruct</title>
