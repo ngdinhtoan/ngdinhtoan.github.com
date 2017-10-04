@@ -6,7 +6,7 @@
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="generator" content="Hugo 0.17" />
+    <meta name="generator" content="Hugo 0.29" />
     <meta name="description" content="A simple way to register and parse flag into struct">
     <meta name="keywords" content="[golang, go, struct, flag]">
 
@@ -27,7 +27,6 @@
     
 
     
-    <link href="" rel="alternate" type="application/rss+xml" title="Toán Nguyễn"/>
 </head>
 
 <body>
@@ -92,30 +91,29 @@
 
 <h2 id="example">Example</h2>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&quot;fmt&quot;</span>
-
-	<span class="s">&quot;github.com/ngdinhtoan/flagstruct&quot;</span>
-<span class="p">)</span>
-
-<span class="kd">type</span> <span class="nx">dbConfig</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">Hostname</span> <span class="kt">string</span> <span class="s">`flag:&quot;hostname&quot; default:&quot;localhost&quot; usage:&quot;Hostname&quot;`</span>
-	<span class="nx">Port</span>     <span class="kt">uint64</span> <span class="s">`flag:&quot;port&quot; default:&quot;3306&quot;`</span>
-	<span class="nx">DbName</span>   <span class="kt">string</span> <span class="s">`flag:&quot;db_name&quot; usage:&quot;Database name&quot;`</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">conf</span> <span class="o">:=</span> <span class="nx">dbConfig</span><span class="p">{}</span>
-	<span class="nx">flagstruct</span><span class="p">.</span><span class="nx">Parse</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">conf</span><span class="p">)</span>
-
-	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Hostname:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">Hostname</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Port:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">Port</span><span class="p">)</span>
-	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;DB Name:&quot;</span><span class="p">,</span> <span class="nx">conf</span><span class="p">.</span><span class="nx">DbName</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s3eb">package</span><span class="s1f40"> </span><span class="s7df">main</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3eb">import</span><span class="s1f40"> </span><span class="s1388">(</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="sc1c">&#34;fmt&#34;</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="sc1c">&#34;github.com/ngdinhtoan/flagstruct&#34;</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">type</span><span class="s1f40"> </span><span class="s7df">dbConfig</span><span class="s1f40"> </span><span class="s3e8">struct</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Hostname</span><span class="s1f40"> </span><span class="s3e8">string</span><span class="s1f40"> </span><span class="sc1c">`flag:&#34;hostname&#34; default:&#34;localhost&#34; usage:&#34;Hostname&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Port</span><span class="s1f40">     </span><span class="s3e8">uint64</span><span class="s1f40"> </span><span class="sc1c">`flag:&#34;port&#34; default:&#34;3306&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">DbName</span><span class="s1f40">   </span><span class="s3e8">string</span><span class="s1f40"> </span><span class="sc1c">`flag:&#34;db_name&#34; usage:&#34;Database name&#34;`</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s1388">}</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">func</span><span class="s1f40"> </span><span class="s7df">main</span><span class="s1388">()</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">conf</span><span class="s1f40"> </span><span class="sfa0">:=</span><span class="s1f40"> </span><span class="s7df">dbConfig</span><span class="s1388">{}</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">flagstruct</span><span class="s1388">.</span><span class="s7df">Parse</span><span class="s1388">(</span><span class="sfa0">&amp;</span><span class="s7df">conf</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">fmt</span><span class="s1388">.</span><span class="s7df">Println</span><span class="s1388">(</span><span class="sc1c">&#34;Hostname:&#34;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="s7df">conf</span><span class="s1388">.</span><span class="s7df">Hostname</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">fmt</span><span class="s1388">.</span><span class="s7df">Println</span><span class="s1388">(</span><span class="sc1c">&#34;Port:&#34;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="s7df">conf</span><span class="s1388">.</span><span class="s7df">Port</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">fmt</span><span class="s1388">.</span><span class="s7df">Println</span><span class="s1388">(</span><span class="sc1c">&#34;DB Name:&#34;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="s7df">conf</span><span class="s1388">.</span><span class="s7df">DbName</span><span class="s1388">)</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s1388">}</span></code></pre>
+</div>
 
 <p>Run with some options:</p>
 
@@ -133,8 +131,8 @@ DB Name: test_db
     </div>
 
     <footer>
-    <p class="copyright">&copy; 2016. All rights reserved.
-         Powered by <a href="http://hugo.spf13.com/">Hugo</a>.
+    <p class="copyright">&copy; 2017. All rights reserved.
+         Powered by <a href="https://gohugo.io/">Hugo</a>.
     </p>
 </footer>
 </div>

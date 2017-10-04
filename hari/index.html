@@ -6,7 +6,7 @@
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="generator" content="Hugo 0.17" />
+    <meta name="generator" content="Hugo 0.29" />
     <meta name="description" content="A command to generate GO struct from JSON files">
     <meta name="keywords" content="[Golang, JSON, Struct, Convert]">
 
@@ -27,7 +27,6 @@
     
 
     
-    <link href="" rel="alternate" type="application/rss+xml" title="Toán Nguyễn"/>
 </head>
 
 <body>
@@ -94,19 +93,18 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>Example file <code>product.json</code> has content</p>
 
-<div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;A green door&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mf">12.50</span><span class="p">,</span>
-    <span class="nt">&quot;active&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nt">&quot;tags&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;home&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">],</span>
-    <span class="nt">&quot;category&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Home&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="s1388">{</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7e2">&#34;id&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="sc80">1</span><span class="s1388">,</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7e2">&#34;name&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="sc1c">&#34;A green door&#34;</span><span class="s1388">,</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7e2">&#34;price&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="sc80">12.50</span><span class="s1388">,</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7e2">&#34;active&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="s3e8">true</span><span class="s1388">,</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7e2">&#34;tags&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="s1388">[</span><span class="sc1c">&#34;home&#34;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="sc1c">&#34;green&#34;</span><span class="s1388">],</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s7e2">&#34;category&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
+</span><span class="s1f40">        </span><span class="s7e2">&#34;id&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="sc80">2</span><span class="s1388">,</span><span class="s1f40">
+</span><span class="s1f40">        </span><span class="s7e2">&#34;name&#34;</span><span class="s1388">:</span><span class="s1f40"> </span><span class="sc1c">&#34;Home&#34;</span><span class="s1f40">
+</span><span class="s1f40">    </span><span class="s1388">}</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s1388">}</span></code></pre>
+</div>
 
 <p>Run Hari command</p>
 
@@ -115,23 +113,22 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
 
 <p>then it will generate <code>product.go</code> file in the same directory, and its content is</p>
 
-<p><div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kd">type</span> <span class="nx">Category</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">ID</span>   <span class="kt">int64</span>  <span class="s">`json:&quot;id&quot;`</span>
-	<span class="nx">Name</span> <span class="kt">string</span> <span class="s">`json:&quot;name&quot;`</span>
-<span class="p">}</span>
-
-<span class="kd">type</span> <span class="nx">Product</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">Active</span>   <span class="kt">bool</span>     <span class="s">`json:&quot;active&quot;`</span>
-	<span class="nx">Category</span> <span class="nx">Category</span> <span class="s">`json:&quot;category&quot;`</span>
-	<span class="nx">ID</span>       <span class="kt">int64</span>    <span class="s">`json:&quot;id&quot;`</span>
-	<span class="nx">Name</span>     <span class="kt">string</span>   <span class="s">`json:&quot;name&quot;`</span>
-	<span class="nx">Price</span>    <span class="kt">float64</span>  <span class="s">`json:&quot;price&quot;`</span>
-	<span class="nx">Tags</span>     <span class="p">[]</span><span class="kt">string</span> <span class="s">`json:&quot;tags&quot;`</span>
-<span class="p">}</span>
-</code></pre></div>
-</p>
+<p><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s3eb">package</span><span class="s1f40"> </span><span class="s7df">main</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">type</span><span class="s1f40"> </span><span class="s7df">Category</span><span class="s1f40"> </span><span class="s3e8">struct</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">ID</span><span class="s1f40">   </span><span class="s3e8">int64</span><span class="s1f40">  </span><span class="sc1c">`json:&#34;id&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Name</span><span class="s1f40"> </span><span class="s3e8">string</span><span class="s1f40"> </span><span class="sc1c">`json:&#34;name&#34;`</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s1388">}</span><span class="s1f40">
+</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s3e8">type</span><span class="s1f40"> </span><span class="s7df">Product</span><span class="s1f40"> </span><span class="s3e8">struct</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Active</span><span class="s1f40">   </span><span class="s3e8">bool</span><span class="s1f40">     </span><span class="sc1c">`json:&#34;active&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Category</span><span class="s1f40"> </span><span class="s7df">Category</span><span class="s1f40"> </span><span class="sc1c">`json:&#34;category&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">ID</span><span class="s1f40">       </span><span class="s3e8">int64</span><span class="s1f40">    </span><span class="sc1c">`json:&#34;id&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Name</span><span class="s1f40">     </span><span class="s3e8">string</span><span class="s1f40">   </span><span class="sc1c">`json:&#34;name&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Price</span><span class="s1f40">    </span><span class="s3e8">float64</span><span class="s1f40">  </span><span class="sc1c">`json:&#34;price&#34;`</span><span class="s1f40">
+</span><span class="s1f40">	</span><span class="s7df">Tags</span><span class="s1f40">     </span><span class="s1388">[]</span><span class="s3e8">string</span><span class="s1f40"> </span><span class="sc1c">`json:&#34;tags&#34;`</span><span class="s1f40">
+</span><span class="s1f40"></span><span class="s1388">}</span></code></pre>
+</div></p>
 
 <h3 id="license">License</h3>
 
@@ -141,8 +138,8 @@ It&rsquo;s boring and takes time. Hari will help you on that job.</p>
     </div>
 
     <footer>
-    <p class="copyright">&copy; 2016. All rights reserved.
-         Powered by <a href="http://hugo.spf13.com/">Hugo</a>.
+    <p class="copyright">&copy; 2017. All rights reserved.
+         Powered by <a href="https://gohugo.io/">Hugo</a>.
     </p>
 </footer>
 </div>
