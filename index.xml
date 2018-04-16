@@ -27,11 +27,8 @@ Install go get github.com/ngdinhtoan/glide-cleanup  Run glide cleanup  License T
       <pubDate>Wed, 22 Jun 2016 21:13:53 +0700</pubDate>
       
       <guid>https://ngdinhtoan.github.io/flagstruct/</guid>
-      <description>   
-Install go get -u github.com/ngdinhtoan/flagstruct  Tag syntax `flag:&amp;quot;flagname&amp;quot; default:&amp;quot;default_value&amp;quot; usage:&amp;quot;description here&amp;quot;`  Tag default and usage can be omit.
-Example packagemainimport(&amp;#34;fmt&amp;#34;&amp;#34;github.com/ngdinhtoan/flagstruct&amp;#34;)typedbConfigstruct{Hostnamestring`flag:&amp;#34;hostname&amp;#34; default:&amp;#34;localhost&amp;#34; usage:&amp;#34;Hostname&amp;#34;`Portuint64`flag:&amp;#34;port&amp;#34; default:&amp;#34;3306&amp;#34;`DbNamestring`flag:&amp;#34;db_name&amp;#34; usage:&amp;#34;Database name&amp;#34;`}funcmain(){conf:=dbConfig{}flagstruct.Parse(&amp;amp;conf)fmt.Println(&amp;#34;Hostname:&amp;#34;,conf.Hostname)fmt.Println(&amp;#34;Port:&amp;#34;,conf.Port)fmt.Println(&amp;#34;DB Name:&amp;#34;,conf.DbName)}  Run with some options:
-go run main.go -hostname=127.0.0.1 -db_name=test_db  Output:
-Hostname: 127.0.0.1 Port: 3306 DB Name: test_db  </description>
+      <description>Install go get -u github.com/ngdinhtoan/flagstruct  Tag syntax `flag:&amp;quot;flagname&amp;quot; default:&amp;quot;default_value&amp;quot; usage:&amp;quot;description here&amp;quot;`  Tag default and usage can be omit.
+Example package main import ( &amp;#34;fmt&amp;#34; &amp;#34;github.com/ngdinhtoan/flagstruct&amp;#34; ) type dbConfig struct { Hostname string `flag:&amp;#34;hostname&amp;#34; default:&amp;#34;localhost&amp;#34; usage:&amp;#34;Hostname&amp;#34;` Port uint64 `flag:&amp;#34;port&amp;#34; default:&amp;#34;3306&amp;#34;` DbName string `flag:&amp;#34;db_name&amp;#34; usage:&amp;#34;Database name&amp;#34;` } func main() { conf := dbConfig{} flagstruct.Parse(&amp;amp;conf) fmt.Println(&amp;#34;Hostname:&amp;#34;, conf.Hostname) fmt.Println(&amp;#34;Port:&amp;#34;, conf.Port) fmt.Println(&amp;#34;DB Name:&amp;#34;, conf.DbName) } Run with some options:</description>
     </item>
     
     <item>
@@ -55,8 +52,8 @@ go get github.com/ngdinhtoan/hari  Put JSON string into a file within .</descrip
       <description>Install and import SlackCmd Of course, you have to install GO first if you do not have GO on your system.
 Get SlackCmd by running command
 go get github.com/ngdinhtoan/slackcmd  and import slackcmd package into your project
-import&amp;#34;github.com/ngdinhtoan/slackcmd&amp;#34;  If you want to use stable version, don&amp;rsquo;t want the changes in master branch affect to your project, use SlackCmd v1 by
-importslackcmd&amp;#34;gopkg.in/ngdinhtoan/slackcmd.v1&amp;#34;  How to use SlackCmd Checkout package github.</description>
+import &amp;#34;github.com/ngdinhtoan/slackcmd&amp;#34; If you want to use stable version, don&amp;rsquo;t want the changes in master branch affect to your project, use SlackCmd v1 by
+import slackcmd &amp;#34;gopkg.in/ngdinhtoan/slackcmd.v1&amp;#34; How to use SlackCmd Checkout package github.</description>
     </item>
     
   </channel>

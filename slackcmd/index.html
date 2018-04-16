@@ -6,7 +6,7 @@
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-    <meta name="generator" content="Hugo 0.29" />
+    <meta name="generator" content="Hugo 0.37.1" />
     <meta name="description" content="A simple server to receive and handle Slack Commands written in GO">
     <meta name="keywords" content="[Golang, GO, Slack, Slack Command, Slack Bot]">
 
@@ -25,6 +25,8 @@
     
     
     
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700&amp;subset=vietnamese" rel="stylesheet">
 
     
 </head>
@@ -87,15 +89,13 @@
 
 <p>and import slackcmd package into your project</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s3eb">import</span><span class="s1f40"> </span><span class="sc1c">&#34;github.com/ngdinhtoan/slackcmd&#34;</span></code></pre>
-</div>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="s">&#34;github.com/ngdinhtoan/slackcmd&#34;</span></code></pre></div>
 
 <p>If you want to use stable version,
 don&rsquo;t want the changes in master branch affect to your project,
 use SlackCmd <code>v1</code> by</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s3eb">import</span><span class="s1f40"> </span><span class="s7df">slackcmd</span><span class="s1f40"> </span><span class="sc1c">&#34;gopkg.in/ngdinhtoan/slackcmd.v1&#34;</span></code></pre>
-</div>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="nx">slackcmd</span> <span class="s">&#34;gopkg.in/ngdinhtoan/slackcmd.v1&#34;</span></code></pre></div>
 
 <h3 id="how-to-use-slackcmd">How to use SlackCmd</h3>
 
@@ -107,66 +107,64 @@ use SlackCmd <code>v1</code> by</p>
 
 <p>Below example will show you how to implement a commander to handle <code>/hello</code> command</p>
 
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s1770">// $GOPATH/src/hello/hello.go
-</span><span class="s1770"></span><span class="s3eb">package</span><span class="s1f40"> </span><span class="s7df">hello</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s3eb">import</span><span class="s1f40"> </span><span class="s1388">(</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="sc1c">&#34;io&#34;</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="sc1c">&#34;net/http&#34;</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="sc1c">&#34;github.com/ngdinhtoan/slackcmd&#34;</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1388">)</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s3e8">func</span><span class="s1f40"> </span><span class="s7df">init</span><span class="s1388">()</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s1770">// auto register hellworld commander when import hello package
-</span><span class="s1770"></span><span class="s1f40">	</span><span class="s7df">slackcmd</span><span class="s1388">.</span><span class="s7df">Register</span><span class="s1388">(</span><span class="sfa0">&amp;</span><span class="s7df">helloworld</span><span class="s1388">{})</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1388">}</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s3e8">type</span><span class="s1f40"> </span><span class="s7df">helloworld</span><span class="s1f40"> </span><span class="s3e8">struct</span><span class="s1388">{}</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1770">// ensure that you do not miss any function of Commander interface
-</span><span class="s1770"></span><span class="s3e8">var</span><span class="s1f40"> </span><span class="s7df">_</span><span class="s1f40"> </span><span class="s7df">slackcmd</span><span class="s1388">.</span><span class="s7df">Commander</span><span class="s1f40"> </span><span class="s1388">=</span><span class="s1f40"> </span><span class="s1388">(</span><span class="sfa0">*</span><span class="s7df">helloworld</span><span class="s1388">)(</span><span class="s3e8">nil</span><span class="s1388">)</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1770">// GetCommand return hello command
-</span><span class="s1770"></span><span class="s3e8">func</span><span class="s1f40"> </span><span class="s1388">(</span><span class="s7df">h</span><span class="s1f40"> </span><span class="sfa0">*</span><span class="s7df">helloworld</span><span class="s1388">)</span><span class="s1f40"> </span><span class="s7df">GetCommand</span><span class="s1388">()</span><span class="s1f40"> </span><span class="s1388">[]</span><span class="s3e8">string</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s3e8">return</span><span class="s1f40"> </span><span class="s1388">[]</span><span class="s3e8">string</span><span class="s1388">{</span><span class="sc1c">&#34;/hello&#34;</span><span class="s1388">}</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1388">}</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1770">// Validate payload always return nil
-</span><span class="s1770"></span><span class="s3e8">func</span><span class="s1f40"> </span><span class="s1388">(</span><span class="s7df">h</span><span class="s1f40"> </span><span class="sfa0">*</span><span class="s7df">helloworld</span><span class="s1388">)</span><span class="s1f40"> </span><span class="s7df">Validate</span><span class="s1388">(</span><span class="s7df">payload</span><span class="s1f40"> </span><span class="sfa0">*</span><span class="s7df">slackcmd</span><span class="s1388">.</span><span class="s7df">Payload</span><span class="s1388">)</span><span class="s1f40"> </span><span class="s3e8">error</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s3e8">return</span><span class="s1f40"> </span><span class="s3e8">nil</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1388">}</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1770">// Execute will say hello to user, who enter /hello command
-</span><span class="s1770"></span><span class="s3e8">func</span><span class="s1f40"> </span><span class="s1388">(</span><span class="s7df">h</span><span class="s1f40"> </span><span class="sfa0">*</span><span class="s7df">helloworld</span><span class="s1388">)</span><span class="s1f40"> </span><span class="s7df">Execute</span><span class="s1388">(</span><span class="s7df">payload</span><span class="s1f40"> </span><span class="sfa0">*</span><span class="s7df">slackcmd</span><span class="s1388">.</span><span class="s7df">Payload</span><span class="s1388">,</span><span class="s1f40"> </span><span class="s7df">w</span><span class="s1f40"> </span><span class="s7df">http</span><span class="s1388">.</span><span class="s7df">ResponseWriter</span><span class="s1388">)</span><span class="s1f40"> </span><span class="s3e8">error</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s7df">msg</span><span class="s1f40"> </span><span class="sfa0">:=</span><span class="s1f40"> </span><span class="sc1c">&#34;Hello &#34;</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s3e8">if</span><span class="s1f40"> </span><span class="s7df">payload</span><span class="s1388">.</span><span class="s7df">Text</span><span class="s1f40"> </span><span class="sfa0">!=</span><span class="s1f40"> </span><span class="sc1c">&#34;&#34;</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
-</span><span class="s1f40">		</span><span class="s7df">msg</span><span class="s1f40"> </span><span class="sfa0">+=</span><span class="s1f40"> </span><span class="s7df">payload</span><span class="s1388">.</span><span class="s7df">Text</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s1388">}</span><span class="s1f40"> </span><span class="s3e8">else</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
-</span><span class="s1f40">		</span><span class="s7df">msg</span><span class="s1f40"> </span><span class="sfa0">+=</span><span class="s1f40"> </span><span class="sc1c">&#34;World&#34;</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s1388">}</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s7df">io</span><span class="s1388">.</span><span class="s7df">WriteString</span><span class="s1388">(</span><span class="s7df">w</span><span class="s1388">,</span><span class="s1f40"> </span><span class="s7df">msg</span><span class="s1388">)</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s3e8">return</span><span class="s1f40"> </span><span class="s3e8">nil</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1388">}</span></code></pre>
-</div>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// $GOPATH/src/hello/hello.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">hello</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;io&#34;</span>
+	<span class="s">&#34;net/http&#34;</span>
+
+	<span class="s">&#34;github.com/ngdinhtoan/slackcmd&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// auto register hellworld commander when import hello package
+</span><span class="c1"></span>	<span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Register</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">helloworld</span><span class="p">{})</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">helloworld</span> <span class="kd">struct</span><span class="p">{}</span>
+
+<span class="c1">// ensure that you do not miss any function of Commander interface
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">_</span> <span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Commander</span> <span class="p">=</span> <span class="p">(</span><span class="o">*</span><span class="nx">helloworld</span><span class="p">)(</span><span class="kc">nil</span><span class="p">)</span>
+
+<span class="c1">// GetCommand return hello command
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">helloworld</span><span class="p">)</span> <span class="nx">GetCommand</span><span class="p">()</span> <span class="p">[]</span><span class="kt">string</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;/hello&#34;</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Validate payload always return nil
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">helloworld</span><span class="p">)</span> <span class="nx">Validate</span><span class="p">(</span><span class="nx">payload</span> <span class="o">*</span><span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Payload</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="c1">// Execute will say hello to user, who enter /hello command
+</span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">helloworld</span><span class="p">)</span> <span class="nx">Execute</span><span class="p">(</span><span class="nx">payload</span> <span class="o">*</span><span class="nx">slackcmd</span><span class="p">.</span><span class="nx">Payload</span><span class="p">,</span> <span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+	<span class="nx">msg</span> <span class="o">:=</span> <span class="s">&#34;Hello &#34;</span>
+
+	<span class="k">if</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">Text</span> <span class="o">!=</span> <span class="s">&#34;&#34;</span> <span class="p">{</span>
+		<span class="nx">msg</span> <span class="o">+=</span> <span class="nx">payload</span><span class="p">.</span><span class="nx">Text</span>
+	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="nx">msg</span> <span class="o">+=</span> <span class="s">&#34;World&#34;</span>
+	<span class="p">}</span>
+
+	<span class="nx">io</span><span class="p">.</span><span class="nx">WriteString</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">msg</span><span class="p">)</span>
+	<span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span></code></pre></div>
 
 <p>Now use it in your app</p>
 
-<p><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="s1770">// $GOPATH/src/hello/app/main.go
-</span><span class="s1770"></span><span class="s3eb">package</span><span class="s1f40"> </span><span class="s7df">main</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s3eb">import</span><span class="s1f40"> </span><span class="s1388">(</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s7df">_</span><span class="s1f40"> </span><span class="sc1c">&#34;hello&#34;</span><span class="s1f40"> </span><span class="s1770">// just import it, init function will register hello command
-</span><span class="s1770"></span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="sc1c">&#34;github.com/ngdinhtoan/slackcmd&#34;</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1388">)</span><span class="s1f40">
-</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s3e8">func</span><span class="s1f40"> </span><span class="s7df">main</span><span class="s1388">()</span><span class="s1f40"> </span><span class="s1388">{</span><span class="s1f40">
-</span><span class="s1f40">	</span><span class="s7df">slackcmd</span><span class="s1388">.</span><span class="s7df">StartServer</span><span class="s1388">(</span><span class="sc1c">&#34;localhost&#34;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="sc1c">&#34;9191&#34;</span><span class="s1388">,</span><span class="s1f40"> </span><span class="sc1c">&#34;/&#34;</span><span class="s1388">)</span><span class="s1f40">
-</span><span class="s1f40"></span><span class="s1388">}</span></code></pre>
-</div></p>
+<p><div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// $GOPATH/src/hello/app/main.go
+</span><span class="c1"></span><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="nx">_</span> <span class="s">&#34;hello&#34;</span> <span class="c1">// just import it, init function will register hello command
+</span><span class="c1"></span>
+	<span class="s">&#34;github.com/ngdinhtoan/slackcmd&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">slackcmd</span><span class="p">.</span><span class="nx">StartServer</span><span class="p">(</span><span class="s">&#34;localhost&#34;</span><span class="p">,</span> <span class="s">&#34;9191&#34;</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div></p>
 
 <p>Run app by <code>go run</code> and your server will listen at address loalhost:9191.
 Send a test request:</p>
@@ -215,7 +213,7 @@ or join to chat <a href="https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&
     </div>
 
     <footer>
-    <p class="copyright">&copy; 2017. All rights reserved.
+    <p class="copyright">&copy; 2018. All rights reserved.
          Powered by <a href="https://gohugo.io/">Hugo</a>.
     </p>
 </footer>
